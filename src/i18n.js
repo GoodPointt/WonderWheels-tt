@@ -14,14 +14,14 @@ i18n
     backend: {
       loadPath: '/locales/{{lng}}/translation.json',
     },
-    // detection: {
-    //     order: ['localStorage', 'navigator', 'querystring', 'htmlTag'],
-    //     htmlTag: document.documentElement,
-    //     lookupQuerystring: 'lang',
-    //     lookupLocalStorage: 'i18nextLng',
-    //     caches: ['localStorage'],
-    //     // convertDetectedLanguage: (lng) => lng.replace('-', '_'),
-    // },
+    detection: {
+      order: ['localStorage', 'navigator', 'querystring', 'htmlTag'],
+      htmlTag: document.documentElement,
+      lookupQuerystring: 'locale',
+      lookupLocalStorage: 'i18nextLng',
+      caches: ['localStorage'],
+      convertDetectedLanguage: lng => lng.replace('-', '_'),
+    },
   });
 
 export default i18n;

@@ -3,5 +3,9 @@
     { "title": "Додому", "path": "/" },
     { "title": "Каталог", "path": "/catalog" },
     { "title": "Улюблені", "path": "/favorites" }
-  ]
+  ],
+  "button": {
+    "lable": "Докладніше",
+    "loadMore": "Завантажити ще"
+  }
 }

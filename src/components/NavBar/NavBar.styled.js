@@ -12,7 +12,7 @@ export const StyledNavList = styled.ul`
   }
 
   & li {
-    transition: all 300ms ease;
+    transition: var(--o-animation);
   }
   & li:hover {
     transform: scale(1.1);
@@ -23,13 +23,14 @@ export const StyledNavLink = styled(NavLink)`
   padding: 10px 16px;
   text-transform: uppercase;
 
-  transition: all 300ms ease;
+  transition: var(--o-animation);
 
   &:hover {
-    text-shadow: -2px 1px 8px rgba(52, 148, 179, 1);
+    text-shadow: -2px 1px 8px var(--accent-color);
   }
 
   &.active {
-    color: pink;
+    color: var(--btn-hover-color);
+    text-shadow: -2px 1px 8px var(--accent-color);
   }
 `;

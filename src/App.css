@@ -1,23 +1,34 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+  color: #121417;
+
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+
+  --primary-txt-color: #121417;
+  --secondary-txt-color: #8a8a89;
+  --white-txt-color: #fff;
+  --accent-color: #3470ff;
+  --btn-hover-color: #0b44cd;
+  --o-animation: all 300ms ease;
 }
 
 main {
   width: 100%;
 }
 header {
+  padding: 40px 0;
   width: 100%;
 }
 footer {
+  padding: 24px 0;
   width: 100%;
 }
 
 .body {
   margin: 0 auto;
-  transition: all 0.5s ease-out;
+  transition: var(--o-animation);
   display: flex;
   flex-wrap: wrap;
   min-height: 100vh;
@@ -46,8 +57,7 @@ body {
 }
 
 body {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-family: 'Manrope', sans-serif;
 }
 
 hr {

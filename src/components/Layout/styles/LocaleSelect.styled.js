@@ -11,7 +11,7 @@ export const StyledLocaleSelectBtn = styled.button`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: all 300ms ease;
+  transition: var(--o-animation);
   background-color: transparent;
   text-transform: uppercase;
 

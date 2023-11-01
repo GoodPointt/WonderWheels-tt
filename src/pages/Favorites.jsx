@@ -1,4 +1,10 @@
+import { StyledContainer } from '../components/Container/Container.styled';
+
 const Favorites = () => {
-  return <div>Favorites</div>;
+  return (
+    <section>
+      <StyledContainer>Home</StyledContainer>
+    </section>
+  );
 };
 export default Favorites;

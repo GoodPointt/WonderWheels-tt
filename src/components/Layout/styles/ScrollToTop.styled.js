@@ -15,7 +15,8 @@ export const GoTopBtn = styled.button`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: all 300ms ease;
+
+  transition: var(--o-animation);
   visibility: hidden;
 
   &.shown {

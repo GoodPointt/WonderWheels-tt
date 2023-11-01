@@ -1,14 +1,16 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import Layout from './components/Layout';
 import Routings from './router/Routings';
-import './i18n';
-import './App.css';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { persistor } from './redux/store';
 
 function App() {
   return (
     <Router>
       <Layout>
-        <Routings />
+        <PersistGate loading={null} persistor={persistor}>
+          <Routings />
+        </PersistGate>
       </Layout>
     </Router>
   );

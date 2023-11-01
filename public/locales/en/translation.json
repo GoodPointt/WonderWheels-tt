@@ -3,5 +3,9 @@
     { "title": "Home", "path": "/" },
     { "title": "Catalog", "path": "/catalog" },
     { "title": "Favorites", "path": "/favorites" }
-  ]
+  ],
+  "button": {
+    "lable": "Learn more",
+    "loadMore": "Load more"
+  }
 }

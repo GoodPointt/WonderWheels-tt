@@ -1,23 +1,23 @@
-import { useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import { useLocation } from 'react-router-dom';
 import ScrollToTop from './ScrollToTop';
 import LocaleSelect from './LocaleSelect';
+import { useAdverts } from '../../hooks/useAdverts';
+
+import SkeletonList from '../Skeleton/SkeletonList';
 
 const Layout = ({ children }) => {
-  const location = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+  const { isLoading, error } = useAdverts();
 
   return (
     <div className="body">
       <Header />
-      <LocaleSelect />
-      <main>{children}</main>
+      <main>
+        {children}
+        {isLoading && <SkeletonList />}
+      </main>
       <Footer />
+      <LocaleSelect />
       <ScrollToTop />
     </div>
   );
