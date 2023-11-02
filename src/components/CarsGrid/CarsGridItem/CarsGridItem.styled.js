@@ -23,7 +23,7 @@ export const StyledCarsGridItem = styled.li`
     position: absolute;
     top: 3%;
     right: 3%;
-    z-index: 2;
+    z-index: 1;
     transition: var(--o-animation);
 
     &:hover {
@@ -48,7 +48,6 @@ export const StyledCarsGridItemImg = styled.img`
   margin-bottom: 14px;
 
   &:hover {
-    cursor: pointer;
     transition: all 500ms ease-in-out;
     filter: grayscale(100%);
   }

@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
+import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 
-export const StyledNavList = styled.ul`
+export const StyledNavList = styled(motion.ul)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,6 +19,8 @@ export const StyledNavList = styled.ul`
     transform: scale(1.1);
   }
 `;
+
+export const StyledNavItem = styled(motion.li)``;
 
 export const StyledNavLink = styled(NavLink)`
   padding: 10px 16px;

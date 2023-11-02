@@ -9,11 +9,11 @@ import { incrementPage } from '../../redux/adverts/slice';
 
 const CarsGrid = () => {
   const dispatch = useDispatch();
-  const { adverts, favorites, page } = useAdverts();
+  const { adverts } = useAdverts();
 
   useEffect(() => {
     (async () => {
-      dispatch(getAll(page));
+      dispatch(getAll());
       dispatch(incrementPage());
     })();
   }, []);

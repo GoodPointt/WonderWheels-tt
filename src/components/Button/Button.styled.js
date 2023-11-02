@@ -14,4 +14,9 @@ export const StyledButton = styled.button`
   &:hover {
     background-color: var(--btn-hover-color);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: rgba(38, 82, 183, 0.6);
+  }
 `;

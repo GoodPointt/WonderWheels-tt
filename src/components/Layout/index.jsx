@@ -2,23 +2,29 @@ import Header from './Header';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
 import LocaleSelect from './LocaleSelect';
-import { useAdverts } from '../../hooks/useAdverts';
-
-import SkeletonList from '../Skeleton/SkeletonList';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = ({ children }) => {
-  const { isLoading, error } = useAdverts();
-
   return (
     <div className="body">
       <Header />
-      <main>
-        {children}
-        {isLoading && <SkeletonList />}
-      </main>
+      <main>{children}</main>
       <Footer />
       <LocaleSelect />
       <ScrollToTop />
+      <ToastContainer
+        position="top-right"
+        autoClose={2700}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };
