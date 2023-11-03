@@ -43,4 +43,15 @@ export const StyledCarDetails = styled.div`
     border-radius: 24px;
     margin-bottom: 24px;
   }
+
+  & .condition {
+    border-radius: 35px;
+    background: #f9f9f9;
+    display: inline-flex;
+    padding: 7px 14px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+  }
 `;

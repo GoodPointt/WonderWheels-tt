@@ -6,6 +6,21 @@
   ],
   "button": {
     "lable": "Learn more",
-    "loadMore": "Load more"
+    "loadMore": "Load more",
+    "rentLable": "Rental Car"
+  },
+  "home": {
+    "benefits": [
+      "🔑 Fleet Variety: From sleek sedans for that important business meeting to spacious SUVs for family vacations and zippy compacts for city exploration, we have the perfect ride to suit your needs.",
+      "🌐 Convenient Locations: With multiple branches strategically located across the country, you are never far from a WanderWheels office.",
+      "💼 Business or Pleasure: We cater to both business travelers and vacationers, with competitive rates and flexible rental options.",
+      "🔒 Safety First: Your safety is our priority. All our vehicles are meticulously maintained and undergo rigorous safety checks to ensure a worry-free journey.",
+      "💰 Affordable Luxury: Experience the thrill of luxury driving without breaking the bank. WanderWheels offers premium cars at affordable rates.",
+      "📋 Easy Booking: Booking with us is a breeze! You can reserve your car online or through our user-friendly mobile app.",
+      "🌞 Roadside Assistance: Enjoy peace of mind with our 24/7 roadside assistance, ensuring you are never alone on your journey.",
+      "🌎 Explore at Your Pace: Discover new horizons, make spontaneous stops, and savor the freedom of the open road with WanderWheels.",
+      "🎉 Special Offer Alert: Book today and receive an exclusive discount on your next adventure! Do not miss out on the chance to enhance your travel experience.",
+      "👌 Choose WanderWheels for quality vehicles, exceptional service, and the journey of a lifetime. Your road to adventure begins here!"
+    ]
   }
 }

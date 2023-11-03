@@ -18,6 +18,7 @@ const MakesFilter = () => {
       backgroundColor: '#F7F7FB',
       borderColor: '#F7F7FB',
       color: '#121417',
+      fontFamily: 'Manrope',
       fontSize: '18px',
       fontWeight: 500,
       lineHeight: 1.11,

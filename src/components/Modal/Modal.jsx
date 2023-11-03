@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { ModalBackdrop, ModalContent } from './Modal.styled';
 
+import CloseBtn from './CloseBtn/CloseBtn';
+
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = ({ toggleModal, children }) => {
@@ -48,6 +50,7 @@ export const Modal = ({ toggleModal, children }) => {
         transition={{ duration: 0.5 }}
       >
         {children}
+        <CloseBtn toggleModal={toggleModal} />
       </ModalContent>
     </ModalBackdrop>,
     modalRoot

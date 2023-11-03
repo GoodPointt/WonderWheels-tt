@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import Button from '../../Button/Button';
 import { StyledCarDetails } from './CarDetails.styled';
 
@@ -21,6 +22,7 @@ const CarDetails = ({
     mileage,
   },
 }) => {
+  const { t } = useTranslation();
   const tips = `${address}, Id: ${id}, Year: ${year}, Type: ${type}, Fuel Consumption: ${fuelConsumption}, Engine Size: ${engineSize}`;
 
   const tipsArr = tips.split(',');
@@ -47,7 +49,21 @@ const CarDetails = ({
         ))}
       </p>
       <h4>Rental Conditions:</h4>
-      <Button>Rental Car</Button>
+      <p
+        style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 24 }}
+      >
+        {[
+          ...rentalConditions.split('\n'),
+          `Mileage: ${mileage}`,
+          `Price: $${rentalPrice}`,
+        ].map((item, idx) => (
+          <span className="condition" key={idx}>
+            {item}
+          </span>
+        ))}
+      </p>
+
+      <Button>{t('button.rentLable')}</Button>
     </StyledCarDetails>
   );
 };
