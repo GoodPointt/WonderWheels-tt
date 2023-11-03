@@ -4,8 +4,10 @@ import ScrollToTop from './ScrollToTop';
 import LocaleSelect from './LocaleSelect';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAdverts } from '../../hooks/useAdverts';
 
 const Layout = ({ children }) => {
+  const { page } = useAdverts();
   return (
     <div className="body">
       <Header />

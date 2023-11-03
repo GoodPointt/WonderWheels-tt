@@ -3,12 +3,12 @@ import ValuesFilter from './MakesFilter/MakesFilter';
 import MileageFilter from './MileageFilter/MileageFilter';
 import PriceFilter from './PriceFilter/PriceFilter';
 
-const FiltersBar = () => {
+const FiltersBar = ({ variant }) => {
   return (
     <StyledFiltersWrapper>
-      <ValuesFilter />
-      <PriceFilter />
-      <MileageFilter />
+      <ValuesFilter variant={variant} />
+      <PriceFilter variant={variant} />
+      <MileageFilter variant={variant} />
     </StyledFiltersWrapper>
   );
 };

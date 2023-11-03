@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { StyledNavItem, StyledNavLink, StyledNavList } from './NavBar.styled';
+import { useDispatch } from 'react-redux';
+import { resetPage } from '../../redux/adverts/slice';
 
 const listAnimation = {
   hidden: {
@@ -17,11 +19,16 @@ const listAnimation = {
 
 const NavBar = () => {
   const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
   const lang = i18n.language;
 
   const navList = t('navList', {
     returnObjects: true,
   });
+
+  const handleRouteChange = () => {
+    dispatch(resetPage());
+  };
 
   return (
     <nav>
@@ -38,7 +45,10 @@ const NavBar = () => {
               variants={listAnimation}
               custom={idx + 1}
             >
-              <StyledNavLink to={navItem.path + '?locale=' + lang}>
+              <StyledNavLink
+                onClick={handleRouteChange}
+                to={navItem.path + '?locale=' + lang}
+              >
                 {navItem.title}
               </StyledNavLink>
             </StyledNavItem>

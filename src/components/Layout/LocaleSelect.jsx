@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { StyledLocaleSelectBtn } from './styles/LocaleSelect.styled';
-import { GrLanguage } from 'react-icons/gr';
+import { MdOutlineLanguage } from 'react-icons/md';
 
 const LocaleSelect = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,7 +20,7 @@ const LocaleSelect = () => {
 
   return (
     <StyledLocaleSelectBtn onClick={handleLocaleChange}>
-      <GrLanguage size={24} />
+      <MdOutlineLanguage size={30} />
       {lang}
     </StyledLocaleSelectBtn>
   );

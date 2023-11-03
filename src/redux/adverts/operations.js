@@ -9,15 +9,15 @@ import { checkFavorites } from '../../utils/checkFavorites';
 
 export const getAll = createAsyncThunk(
   'adverts/getAll',
-  async (_, thunkAPI) => {
+  async (variant, thunkAPI) => {
     try {
       const {
         adverts: { favorites, page },
       } = thunkAPI.getState();
 
-      const data = await fetchAllCars(page);
+      const data = await fetchAllCars(page, variant);
 
-      const dataWithFavs = checkFavorites(data, favorites);
+      const dataWithFavs = checkFavorites(data, favorites, variant);
 
       return dataWithFavs;
     } catch (e) {

@@ -9,19 +9,6 @@ export const StyledFiltersWrapper = styled.div`
   width: 100%;
   margin-bottom: 40px;
 
-  & #react-select-2-listbox {
-    border-bottom-left-radius: 14px;
-    border-bottom-right-radius: 14px;
-    border: 1px solid rgba(18, 20, 23, 0.05);
-    padding: 14px 8px 14px 18px;
-  }
-  & #react-select-3-listbox {
-    border-bottom-left-radius: 14px;
-    border-bottom-right-radius: 14px;
-    border: 1px solid rgba(18, 20, 23, 0.05);
-    padding: 14px 8px 14px 18px;
-  }
-
   & .makes {
     width: 225px;
   }

@@ -41,3 +41,15 @@ export const mileage = [
   { value: '6000', label: '6000' },
   { value: '7000', label: '7000' },
 ];
+
+export const imgs = [
+  'https://res.cloudinary.com/cloud7ty/image/upload/v1699016835/CarRental/uftn3uuh1czo72niqzhf.jpg',
+
+  'https://res.cloudinary.com/cloud7ty/image/upload/v1699020202/CarRental/p3c63ffawmm4k0twrynx.jpg',
+
+  'https://res.cloudinary.com/cloud7ty/image/upload/v1699016836/CarRental/xrpxkmvbj6pkyy14ltxm.jpg',
+
+  'https://res.cloudinary.com/cloud7ty/image/upload/v1699016836/CarRental/cpo48cvkfy8irsm5eibu.jpg',
+
+  'https://res.cloudinary.com/cloud7ty/image/upload/v1699016835/CarRental/mpgyvfn680vulf6g5ccr.jpg',
+];

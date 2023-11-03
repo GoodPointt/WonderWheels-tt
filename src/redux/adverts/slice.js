@@ -5,7 +5,6 @@ const initialState = {
   adverts: [],
   favorites: [],
   page: 1,
-  // make: null,
   filter: {
     make: '',
     rentalPrice: '',
@@ -72,7 +71,6 @@ const advertsSlice = createSlice({
       .addCase(getByMake.fulfilled, (state, { payload }) => {
         if (state.page === 1) state.adverts = payload;
         else state.adverts = [...state.adverts, ...payload];
-        // state.filter.make = payload[0].make;
         state.filter = { ...state.filter, make: payload[0].make };
         state.isLoading = false;
         state.error = null;
@@ -87,7 +85,6 @@ const advertsSlice = createSlice({
       .addCase(getByPrice.fulfilled, (state, { payload }) => {
         if (state.page === 1) state.adverts = payload;
         else state.adverts = [...state.adverts, ...payload];
-        // state.filter.make = payload[0].make;
         state.filter.rentalPrice = payload[0].rentalPrice;
         state.isLoading = false;
         state.error = null;
@@ -101,7 +98,6 @@ const advertsSlice = createSlice({
       })
       .addCase(getByMileage.fulfilled, (state, { payload }) => {
         state.adverts = payload;
-        // state.filter.make = payload[0].make;
         state.filter.mileage = {
           ...state.filter,
           mileage: {

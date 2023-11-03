@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 
 export const GoTopBtn = styled.button`
   position: fixed;
-  right: 20px;
-  bottom: 25px;
+  right: 3%;
+  bottom: 3%;
   z-index: 10;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 4px;
   background-color: rgba(29, 29, 31, 0.7);
   backdrop-filter: saturate(180%) blur(20px);

@@ -10,7 +10,7 @@ const Banner = () => {
       <StyledBanner>
         <video autoPlay loop muted preload="auto" width="100%">
           <source
-            src="https://res.cloudinary.com/cloud7ty/video/upload/v1698994868/promo_a5e06b0e7b.mp4"
+            src="https://res.cloudinary.com/cloud7ty/video/upload/v1699016946/CarRental/ys26nzbgurycaio09z37.mp4"
             type="video/mp4"
           />
         </video>

@@ -24,7 +24,6 @@ const CarDetails = ({
 }) => {
   const { t } = useTranslation();
   const tips = `${address}, Id: ${id}, Year: ${year}, Type: ${type}, Fuel Consumption: ${fuelConsumption}, Engine Size: ${engineSize}`;
-
   const tipsArr = tips.split(',');
   const tipsF = tipsArr.shift(0);
 

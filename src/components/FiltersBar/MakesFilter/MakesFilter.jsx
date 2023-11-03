@@ -5,11 +5,16 @@ import { useDispatch } from 'react-redux';
 import { getByMake } from '../../../redux/adverts/operations';
 import { resetPage } from '../../../redux/adverts/slice';
 import makeAnimated from 'react-select/animated';
+import { VARIANT } from '../../../common/constants';
+import { useState } from 'react';
 
 const animatedComponents = makeAnimated();
 
-const MakesFilter = () => {
-  const { isLoading, make } = useAdverts();
+const MakesFilter = ({ variant }) => {
+  const { isLoading, make, favorites, adverts } = useAdverts();
+  const [isDisabled, setIsDisabled] = useState(
+    isLoading || (variant === VARIANT.FAV && favorites.length === 0)
+  );
   const dispatch = useDispatch();
 
   const controlStyles = {
@@ -45,12 +50,13 @@ const MakesFilter = () => {
         },
       };
     },
-    singleValueRemove: styles => {
+    menu: styles => {
       return {
         ...styles,
-        ':hover': {
-          cursor: 'pointer',
-        },
+        borderBottomLeftRadius: 14,
+        borderBottomRightRadius: 14,
+        border: '1px solid rgba(18, 20, 23, 0.05)',
+        padding: '14px 8px 14px 18px',
       };
     },
   };
@@ -69,7 +75,7 @@ const MakesFilter = () => {
         options={makes}
         onChange={handleChange}
         name="makes"
-        isDisabled={isLoading}
+        isDisabled={isLoading || isDisabled}
         className="makes"
         isSearchable={true}
         placeholder="Select brand..."

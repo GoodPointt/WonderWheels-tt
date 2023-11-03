@@ -1,22 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { fetchAllCars } from '../../api/instance';
 import { StyledCarsGrid } from './CarsGrid.styled';
 import CarsGridItem from './CarsGridItem/CarsGridItem';
 import { getAll } from '../../redux/adverts/operations';
 import { useAdverts } from '../../hooks/useAdverts';
 import { useDispatch } from 'react-redux/es';
-import { incrementPage } from '../../redux/adverts/slice';
+import { VARIANT } from '../../common/constants';
+import { handleError, handleInfo } from '../../utils/handleToast';
 
-const CarsGrid = () => {
+const CarsGrid = ({ variant }) => {
   const dispatch = useDispatch();
-  const { adverts } = useAdverts();
+  const { adverts, favorites, error } = useAdverts();
 
   useEffect(() => {
     (async () => {
-      dispatch(getAll());
-      dispatch(incrementPage());
+      dispatch(getAll(variant));
     })();
   }, []);
+
+  if (variant === VARIANT.FAV && favorites.length === 0)
+    return (
+      <h2 style={{ color: 'navy', textAlign: 'center', marginTop: 100 }}>
+        Your favorite list is empty...
+      </h2>
+    );
+
+  if (error || adverts.length === 0)
+    return (
+      <h2 style={{ color: 'navy', textAlign: 'center', marginTop: 100 }}>
+        😒 Nothing found. Try another search filters, or contact us to get more
+        info. ✌️
+      </h2>
+    );
 
   return (
     <StyledCarsGrid>

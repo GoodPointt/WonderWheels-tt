@@ -7,18 +7,19 @@ import { useState } from 'react';
 import { getByMileage } from '../../../redux/adverts/operations';
 import Button from '../../Button/Button';
 import { handleWarning } from '../../../utils/handleToast';
+import { VARIANT } from '../../../common/constants';
 
 const animatedComponents = makeAnimated();
 
-const MileageFilter = () => {
+const MileageFilter = ({ variant }) => {
   const [minMileage, setMinMileage] = useState(0);
   const [maxMileage, setMaxMileage] = useState(0);
-  const [isDisabled, setIsDisabled] = useState(true);
+  const { isLoading, adverts, favorites } = useAdverts();
 
-  console.log(minMileage);
-  console.log(maxMileage);
+  const [isDisabled, setIsDisabled] = useState(
+    isLoading || (variant === VARIANT.FAV && favorites.length === 0)
+  );
 
-  const { isLoading, filter } = useAdverts();
   const dispatch = useDispatch();
 
   const controlStylesAsc = {
@@ -52,6 +53,15 @@ const MileageFilter = () => {
         ':hover': {
           cursor: 'pointer',
         },
+      };
+    },
+    menu: styles => {
+      return {
+        ...styles,
+        borderBottomLeftRadius: 14,
+        borderBottomRightRadius: 14,
+        border: '1px solid rgba(18, 20, 23, 0.05)',
+        padding: '14px 8px 14px 18px',
       };
     },
   };
@@ -113,7 +123,7 @@ const MileageFilter = () => {
             options={mileage}
             onChange={handleChange}
             name="mileageAsc"
-            isDisabled={isLoading}
+            isDisabled={isLoading || isDisabled}
             isLoading={isLoading}
             className="mileageAsc"
             isSearchable={true}
@@ -126,7 +136,7 @@ const MileageFilter = () => {
             options={mileage}
             onChange={handleChange}
             name="mileageDesc"
-            isDisabled={isLoading}
+            isDisabled={isLoading || isDisabled}
             isLoading={isLoading}
             className="mileageDesc"
             isSearchable={true}

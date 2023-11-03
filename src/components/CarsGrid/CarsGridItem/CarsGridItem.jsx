@@ -36,35 +36,37 @@ const CarsGridItem = ({ car }) => {
   const toggleModal = () => {
     setShowModal(prev => !prev);
   };
-
-  return (
-    <>
-      <AnimateOnView>
-        <StyledCarsGridItem>
-          <LikeBtn
-            hadleLike={() => hadleLike(car)}
-            isFavorite={car.isFavorite}
-          />
-          <StyledCarsGridItemImg src={car.img} loading="lazy" />
-          <div>
-            <p>
-              {car.make}
-              <span>{car.model}</span>,
-            </p>
-            <p>{car.rentalPrice}</p>
-          </div>
-          <Button handleClick={toggleModal}>{t('button.lable')}</Button>
-        </StyledCarsGridItem>
-      </AnimateOnView>
-      <AnimatePresence>
-        {showModal && (
-          <Modal toggleModal={toggleModal} showModal={showModal}>
-            <CarDetails car={car} />
-          </Modal>
-        )}
-      </AnimatePresence>
-    </>
-  );
+  if (window.location.pathname.includes('favorites') && !car.isFavorite)
+    return null;
+  else
+    return (
+      <>
+        <AnimateOnView>
+          <StyledCarsGridItem>
+            <LikeBtn
+              hadleLike={() => hadleLike(car)}
+              isFavorite={car.isFavorite}
+            />
+            <StyledCarsGridItemImg src={car.img} loading="lazy" />
+            <div>
+              <p>
+                {car.make}
+                <span>{car.model}</span>,
+              </p>
+              <p>{car.rentalPrice}</p>
+            </div>
+            <Button handleClick={toggleModal}>{t('button.lable')}</Button>
+          </StyledCarsGridItem>
+        </AnimateOnView>
+        <AnimatePresence>
+          {showModal && (
+            <Modal toggleModal={toggleModal} showModal={showModal}>
+              <CarDetails car={car} />
+            </Modal>
+          )}
+        </AnimatePresence>
+      </>
+    );
 };
 
 export default CarsGridItem;

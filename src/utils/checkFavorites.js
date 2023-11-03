@@ -1,19 +1,25 @@
-export const checkFavorites = (data, favorites) => {
-  if (favorites.length > 0) {
-    const advertsWithFav = data.map(advert => {
-      if (favorites.includes(advert.id)) {
-        return { ...advert, isFavorite: true };
-      }
-      return advert;
-    });
+import { VARIANT } from '../common/constants';
 
-    if (advertsWithFav.length === 0)
-      throw new Error('You reach end of the list');
-
-    return advertsWithFav;
+export const checkFavorites = (data, favorites, variant = VARIANT.ALL) => {
+  if (favorites.length === 0) {
+    return data;
   }
 
-  if (data.length === 0) throw new Error('You reach end of the list');
+  let advertsWithFav;
 
-  return data;
+  if (variant === VARIANT.ALL) {
+    advertsWithFav = data.map(advert => ({
+      ...advert,
+      isFavorite: favorites.includes(advert.id),
+    }));
+  } else if (variant === VARIANT.FAV) {
+    advertsWithFav = data
+      .filter(advert => favorites.includes(advert.id))
+      .map(advert => ({
+        ...advert,
+        isFavorite: true,
+      }));
+  }
+
+  return advertsWithFav;
 };

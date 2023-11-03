@@ -21,6 +21,16 @@
       "🌎 Explore at Your Pace: Discover new horizons, make spontaneous stops, and savor the freedom of the open road with WanderWheels.",
       "🎉 Special Offer Alert: Book today and receive an exclusive discount on your next adventure! Do not miss out on the chance to enhance your travel experience.",
       "👌 Choose WanderWheels for quality vehicles, exceptional service, and the journey of a lifetime. Your road to adventure begins here!"
+    ],
+    "homeSlider": [
+      { "preTitle": "ALL OUR VEHICLES ARE", "title": "MOT'D & SERVICED" },
+      { "preTitle": "PROFESSIONALLY VALETED", "title": "VEHICLES" },
+      {
+        "preTitle": "SPECIALISTS IN",
+        "title": "PRESTIGE AND PERFORMANCE"
+      },
+      { "preTitle": "ALL CARS COME WITH A", "title": "PREMIUM WARRANTY" },
+      { "preTitle": "NATIONWIDE ROAD SIDE ASSISTANCE", "title": "INCLUDED" }
     ]
   }
 }

@@ -5,19 +5,19 @@ import { getAll, getByMake } from '../../redux/adverts/operations';
 import { useAdverts } from '../../hooks/useAdverts';
 import { incrementPage } from '../../redux/adverts/slice';
 import { useEffect, useState } from 'react';
-import { LIMIT } from '../../common/constants';
+import { LIMIT, VARIANT } from '../../common/constants';
 import { handleInfo } from '../../utils/handleToast';
 
-const LoadMore = () => {
+const LoadMore = ({ variant }) => {
   const [shouldLoadMore, setShouldLoadMore] = useState(true);
   const [shouldScroll, setShouldScroll] = useState(false);
   const { t } = useTranslation();
-  const { page, adverts, filter } = useAdverts();
+  const { page, adverts, filter, favorites } = useAdverts();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (page > 2 && shouldScroll) {
-      const scrollAmount = 400;
+    if (page > 1 && shouldScroll) {
+      const scrollAmount = 725;
       const currentScrollPosition = window.scrollY;
       const newScrollPosition = currentScrollPosition + scrollAmount;
 
@@ -26,7 +26,8 @@ const LoadMore = () => {
         behavior: 'smooth',
       });
     }
-  }, [page, shouldScroll]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [adverts.length]);
 
   useEffect(() => {
     if (adverts.length % LIMIT !== 0) {
@@ -39,11 +40,11 @@ const LoadMore = () => {
   const toggleShouldScroll = () => setShouldScroll(prev => !prev);
 
   const handleLoadMore = async () => {
+    dispatch(incrementPage());
     toggleShouldScroll();
     try {
-      !filter.make && (await dispatch(getAll()).unwrap());
+      !filter.make && (await dispatch(getAll(variant)).unwrap());
       filter.make && (await dispatch(getByMake(filter.make)).unwrap());
-      await dispatch(incrementPage()).unwrap();
     } catch (e) {
       handleInfo(e);
     } finally {
@@ -51,13 +52,28 @@ const LoadMore = () => {
     }
   };
 
-  return (
-    shouldLoadMore && (
-      <StyledLoadMore onClick={handleLoadMore}>
-        {t('button.loadMore')}
-      </StyledLoadMore>
-    )
-  );
+  if (
+    window.location.pathname.includes(VARIANT.ALL) &&
+    adverts?.length >= Number(LIMIT)
+  )
+    return (
+      shouldLoadMore && (
+        <StyledLoadMore onClick={handleLoadMore}>
+          {t('button.loadMore')}
+        </StyledLoadMore>
+      )
+    );
+  if (
+    window.location.pathname.includes(VARIANT.FAV) &&
+    favorites?.length === LIMIT
+  )
+    return (
+      shouldLoadMore && (
+        <StyledLoadMore onClick={handleLoadMore}>
+          {t('button.loadMore')}
+        </StyledLoadMore>
+      )
+    );
 };
 
 export default LoadMore;

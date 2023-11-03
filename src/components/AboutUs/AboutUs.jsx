@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { StyledContainer } from '../Container/Container.styled';
 import { StyledBenefitsSection } from './AboutUs.styled';
+import AnimateOnScroll from '../Animate/AnimateOnScroll';
 
 const AboutUs = () => {
-  const { t, i18n } = useTranslation();
-  // const lang = i18n.language;
+  const { t } = useTranslation();
 
   const benefits = t('home.benefits', {
     returnObjects: true,
@@ -12,13 +12,15 @@ const AboutUs = () => {
 
   return (
     <StyledBenefitsSection>
-      <StyledContainer>
-        <h2>Drive Your Dreams!</h2>
-        <ul>
-          {benefits.length > 0 &&
-            benefits.map((item, idx) => <li key={idx}>{item}</li>)}
-        </ul>
-      </StyledContainer>
+      <AnimateOnScroll>
+        <StyledContainer>
+          <h2>Drive Your Dreams!</h2>
+          <ul>
+            {benefits.length > 0 &&
+              benefits.map((item, idx) => <li key={idx}>{item}</li>)}
+          </ul>
+        </StyledContainer>
+      </AnimateOnScroll>
     </StyledBenefitsSection>
   );
 };

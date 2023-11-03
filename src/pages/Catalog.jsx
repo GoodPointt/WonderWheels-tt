@@ -1,3 +1,4 @@
+import { VARIANT } from '../common/constants';
 import CarsGrid from '../components/CarsGrid/CarsGrid';
 import { StyledContainer } from '../components/Container/Container.styled';
 import FiltersBar from '../components/FiltersBar/FiltersBar';
@@ -10,10 +11,10 @@ const Catalog = () => {
   return (
     <section>
       <StyledContainer>
-        <FiltersBar />
+        <FiltersBar variant={VARIANT.ALL} />
         {isLoading && <SkeletonList />}
-        <CarsGrid />
-        <LoadMore />
+        <CarsGrid variant={VARIANT.ALL} />
+        <LoadMore variant={VARIANT.ALL} />
       </StyledContainer>
     </section>
   );

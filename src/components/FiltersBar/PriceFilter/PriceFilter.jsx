@@ -5,11 +5,16 @@ import { useDispatch } from 'react-redux';
 import { getByPrice } from '../../../redux/adverts/operations';
 import { resetPage } from '../../../redux/adverts/slice';
 import makeAnimated from 'react-select/animated';
+import { VARIANT } from '../../../common/constants';
+import { useState } from 'react';
 
 const animatedComponents = makeAnimated();
 
-const PriceFilter = () => {
-  const { isLoading, filter } = useAdverts();
+const PriceFilter = ({ variant }) => {
+  const { isLoading, filter, adverts, favorites } = useAdverts();
+  const [isDisabled, setIsDisabled] = useState(
+    isLoading || (variant === VARIANT.FAV && favorites.length === 0)
+  );
   const dispatch = useDispatch();
 
   const controlStyles = {
@@ -45,12 +50,13 @@ const PriceFilter = () => {
         },
       };
     },
-    singleValueRemove: styles => {
+    menu: styles => {
       return {
         ...styles,
-        ':hover': {
-          cursor: 'pointer',
-        },
+        borderBottomLeftRadius: 14,
+        borderBottomRightRadius: 14,
+        border: '1px solid rgba(18, 20, 23, 0.05)',
+        padding: '14px 8px 14px 18px',
       };
     },
   };
@@ -69,7 +75,7 @@ const PriceFilter = () => {
         options={prices}
         onChange={handleChange}
         name="prices"
-        isDisabled={isLoading}
+        isDisabled={isLoading || isDisabled}
         className="prices"
         isSearchable={true}
         placeholder="to $"
