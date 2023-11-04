@@ -3,7 +3,7 @@ import { mileage } from '../../../common/data/index';
 import { useAdverts } from '../../../hooks/useAdverts';
 import { useDispatch } from 'react-redux';
 import makeAnimated from 'react-select/animated';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getByMileage } from '../../../redux/adverts/operations';
 import Button from '../../Button/Button';
 import { handleWarning } from '../../../utils/handleToast';
@@ -14,12 +14,13 @@ const animatedComponents = makeAnimated();
 const MileageFilter = ({ variant }) => {
   const [minMileage, setMinMileage] = useState(0);
   const [maxMileage, setMaxMileage] = useState(0);
-  const { isLoading, adverts, favorites } = useAdverts();
+  const { isLoading, favorites, filter } = useAdverts();
 
-  const [isDisabled, setIsDisabled] = useState(
-    isLoading || (variant === VARIANT.FAV && favorites.length === 0)
-  );
+  const [isDisabled, setIsDisabled] = useState(isLoading);
 
+  useEffect(() => {
+    if (variant === VARIANT.FAV && favorites.length === 0) setIsDisabled(true);
+  }, [favorites.length, isLoading, variant]);
   const dispatch = useDispatch();
 
   const controlStylesAsc = {
@@ -36,9 +37,6 @@ const MileageFilter = ({ variant }) => {
       borderBottomLeftRadius: '14px',
       borderTopLeftRadius: '14px',
       transition: 'all 300ms ease',
-      ':hover': {
-        cursor: 'text',
-      },
     }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       return {
@@ -50,9 +48,7 @@ const MileageFilter = ({ variant }) => {
         fontWeight: 500,
         lineHeight: 1.25,
         transition: 'all 300ms ease',
-        ':hover': {
-          cursor: 'pointer',
-        },
+        ':hover': { cursor: 'pointer' },
       };
     },
     menu: styles => {
@@ -64,6 +60,15 @@ const MileageFilter = ({ variant }) => {
         padding: '14px 8px 14px 18px',
       };
     },
+    clearIndicator: base => ({
+      ...base,
+      cursor: 'pointer',
+      color: '#000',
+      padding: 0,
+      position: 'absolute',
+      right: '8px',
+      backgroundColor: '#F7F7FB',
+    }),
   };
 
   const controlStylesDesc = {
@@ -81,18 +86,20 @@ const MileageFilter = ({ variant }) => {
       lineHeight: 1.11,
       padding: '14px 0px 14px 14px',
       transition: 'all 300ms ease',
-      ':hover': {
-        cursor: 'text',
-      },
     }),
   };
 
-  const handleChange = ({ label }, { name }) => {
+  const handleChange = (selectedOption, { name }) => {
+    if (selectedOption === null) {
+      setMinMileage(0);
+      return;
+    }
+    console.log(selectedOption);
     if (name === 'mileageAsc') {
-      setMinMileage(Number(label));
+      setMinMileage(Number(selectedOption.value));
     }
     if (name === 'mileageDesc') {
-      setMaxMileage(Number(label));
+      setMaxMileage(Number(selectedOption.value));
     }
   };
 
@@ -104,7 +111,18 @@ const MileageFilter = ({ variant }) => {
       return handleWarning('"From" and "To" mileages cant be equal');
     }
 
-    dispatch(getByMileage({ minMileage, maxMileage }));
+    dispatch(
+      getByMileage({
+        variant,
+        filter: {
+          ...filter,
+          mileage: {
+            minMileage,
+            maxMileage,
+          },
+        },
+      })
+    );
   };
 
   return (
@@ -119,6 +137,7 @@ const MileageFilter = ({ variant }) => {
       >
         <div style={{ display: 'flex' }}>
           <Select
+            isClearable
             styles={controlStylesAsc}
             options={mileage}
             onChange={handleChange}
@@ -132,6 +151,7 @@ const MileageFilter = ({ variant }) => {
             components={animatedComponents}
           />
           <Select
+            isClearable
             styles={{ ...controlStylesAsc, ...controlStylesDesc }}
             options={mileage}
             onChange={handleChange}
@@ -146,7 +166,7 @@ const MileageFilter = ({ variant }) => {
           />
         </div>
         <Button
-          isDisabled={minMileage === 0 && maxMileage === 0}
+          isDisabled={minMileage === 0 || maxMileage === 0}
           handleClick={onSearch}
         >
           Search

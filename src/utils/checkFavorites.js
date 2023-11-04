@@ -21,5 +21,9 @@ export const checkFavorites = (data, favorites, variant = VARIANT.ALL) => {
       }));
   }
 
+  if (advertsWithFav.length === 0) {
+    throw new Error('Nothing found matching filers');
+  }
+
   return advertsWithFav;
 };

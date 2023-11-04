@@ -11,24 +11,25 @@ const CarsGrid = ({ variant }) => {
   const dispatch = useDispatch();
   const { adverts, favorites, error } = useAdverts();
 
+  console.log('carsGridADVERTS', adverts);
+  console.log('carsGridERROR', error);
+
   useEffect(() => {
     (async () => {
       dispatch(getAll(variant));
     })();
   }, []);
 
+  if (error || adverts.length === 0)
+    return (
+      <h2 style={{ color: 'navy', textAlign: 'center', marginTop: 100 }}>
+        {error}
+      </h2>
+    );
   if (variant === VARIANT.FAV && favorites.length === 0)
     return (
       <h2 style={{ color: 'navy', textAlign: 'center', marginTop: 100 }}>
         Your favorite list is empty...
-      </h2>
-    );
-
-  if (error || adverts.length === 0)
-    return (
-      <h2 style={{ color: 'navy', textAlign: 'center', marginTop: 100 }}>
-        😒 Nothing found. Try another search filters, or contact us to get more
-        info. ✌️
       </h2>
     );
 

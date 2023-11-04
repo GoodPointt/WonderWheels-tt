@@ -6,6 +6,7 @@ import {
   fetchByPrice,
 } from '../../api/instance';
 import { checkFavorites } from '../../utils/checkFavorites';
+import { mileage } from '../../common/data';
 
 export const getAll = createAsyncThunk(
   'adverts/getAll',
@@ -28,15 +29,15 @@ export const getAll = createAsyncThunk(
 
 export const getByMake = createAsyncThunk(
   'adverts/getByMake',
-  async (make, thunkAPI) => {
+  async ({ filter, variant }, thunkAPI) => {
     try {
       const {
         adverts: { favorites, page },
       } = thunkAPI.getState();
 
-      const data = await fetchByMake(page, make);
+      const data = await fetchByMake(page, filter);
 
-      const dataWithFavs = checkFavorites(data, favorites);
+      const dataWithFavs = checkFavorites(data, favorites, variant);
 
       return dataWithFavs;
     } catch (e) {
@@ -47,7 +48,7 @@ export const getByMake = createAsyncThunk(
 
 export const getByPrice = createAsyncThunk(
   'adverts/getByPrice',
-  async (filter, thunkAPI) => {
+  async ({ filter, variant }, thunkAPI) => {
     try {
       const {
         adverts: { favorites, page },
@@ -59,7 +60,7 @@ export const getByPrice = createAsyncThunk(
         advert => advert.rentalPrice <= Number(filter.rentalPrice)
       );
 
-      const dataWithFavs = checkFavorites(filteredData, favorites);
+      const dataWithFavs = checkFavorites(filteredData, favorites, variant);
 
       return dataWithFavs;
     } catch (e) {
@@ -70,7 +71,7 @@ export const getByPrice = createAsyncThunk(
 
 export const getByMileage = createAsyncThunk(
   'adverts/getByMileage',
-  async (filter, thunkAPI) => {
+  async ({ variant, filter }, thunkAPI) => {
     try {
       const {
         adverts: { favorites, page },
@@ -79,11 +80,11 @@ export const getByMileage = createAsyncThunk(
       const data = await fetchByMileage(page, filter);
       const filteredData = data.filter(
         advert =>
-          advert.mileage >= Number(filter.minMileage) &&
-          advert.mileage <= Number(filter.maxMileage)
+          advert.mileage >= Number(filter.mileage.minMileage) &&
+          advert.mileage <= Number(filter.mileage.maxMileage)
       );
 
-      const dataWithFavs = checkFavorites(filteredData, favorites);
+      const dataWithFavs = checkFavorites(filteredData, favorites, variant);
 
       return dataWithFavs;
     } catch (e) {

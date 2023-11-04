@@ -6,15 +6,17 @@ import { getByMake } from '../../../redux/adverts/operations';
 import { resetPage } from '../../../redux/adverts/slice';
 import makeAnimated from 'react-select/animated';
 import { VARIANT } from '../../../common/constants';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const animatedComponents = makeAnimated();
 
 const MakesFilter = ({ variant }) => {
-  const { isLoading, make, favorites, adverts } = useAdverts();
-  const [isDisabled, setIsDisabled] = useState(
-    isLoading || (variant === VARIANT.FAV && favorites.length === 0)
-  );
+  const { isLoading, favorites, filter } = useAdverts();
+  const [isDisabled, setIsDisabled] = useState(isLoading);
+
+  useEffect(() => {
+    if (variant === VARIANT.FAV && favorites.length === 0) setIsDisabled(true);
+  }, [favorites.length, isLoading, variant]);
   const dispatch = useDispatch();
 
   const controlStyles = {
@@ -30,9 +32,6 @@ const MakesFilter = ({ variant }) => {
       padding: '14px 0px 14px 14px',
       borderRadius: '14px',
       transition: 'all 300ms ease',
-      ':hover': {
-        cursor: 'text',
-      },
     }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       return {
@@ -45,9 +44,7 @@ const MakesFilter = ({ variant }) => {
         fontWeight: 500,
         lineHeight: 1.25,
         transition: 'all 300ms ease',
-        ':hover': {
-          cursor: 'pointer',
-        },
+        ':hover': { cursor: 'pointer' },
       };
     },
     menu: styles => {
@@ -59,18 +56,30 @@ const MakesFilter = ({ variant }) => {
         padding: '14px 8px 14px 18px',
       };
     },
+    clearIndicator: base => ({
+      ...base,
+      cursor: 'pointer',
+      color: '#000',
+      padding: 0,
+      position: 'absolute',
+      right: '8px',
+      backgroundColor: '#F7F7FB',
+    }),
   };
 
   const handleChange = selectedOption => {
+    if (selectedOption === null) return;
     const { label } = selectedOption;
-    if (label !== make) dispatch(resetPage());
-    dispatch(getByMake(label));
+    if (label !== filter.make) dispatch(resetPage());
+
+    dispatch(getByMake({ filter: { ...filter, make: label }, variant }));
   };
 
   return (
     <div>
       <h4>Car brand</h4>
       <Select
+        isClearable
         styles={controlStyles}
         options={makes}
         onChange={handleChange}
@@ -78,9 +87,9 @@ const MakesFilter = ({ variant }) => {
         isDisabled={isLoading || isDisabled}
         className="makes"
         isSearchable={true}
-        placeholder="Select brand..."
+        placeholder={'Select brand...'}
         closeMenuOnSelect={true}
-        components={animatedComponents}
+        components={{ animatedComponents }}
       />
     </div>
   );

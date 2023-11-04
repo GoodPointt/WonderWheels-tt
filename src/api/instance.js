@@ -21,10 +21,10 @@ export const fetchAllCars = async (page, variant = VARIANT.ALL) => {
   }
 };
 
-export const fetchByMake = async (page, make) => {
+export const fetchByMake = async (page, filter) => {
   try {
     const { data } = await instance.get(
-      `/adverts?make=${make}&limit=${LIMIT}&page=${page}`
+      `/adverts?make=${filter.make}&limit=${LIMIT}&page=${page}`
     );
     return data;
   } catch (e) {
