@@ -5,6 +5,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
 import './Slider.css';
+import PropTypes from 'prop-types';
 
 const Slider = ({ data, titles }) => {
   return (
@@ -44,3 +45,13 @@ const Slider = ({ data, titles }) => {
 };
 
 export default Slider;
+
+Slider.propTypes = {
+  titles: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      preTitle: PropTypes.string,
+    })
+  ).isRequired,
+  data: PropTypes.arrayOf(PropTypes.string).isRequired,
+};

@@ -9,7 +9,7 @@ import { useAdverts } from '../hooks/useAdverts';
 const Favorites = () => {
   const { isLoading } = useAdverts();
   return (
-    <section>
+    <section className="section">
       <StyledContainer>
         <FiltersBar variant={VARIANT.FAV} />
         {isLoading && <SkeletonList />}

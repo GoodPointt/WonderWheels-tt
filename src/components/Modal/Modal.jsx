@@ -40,7 +40,7 @@ export const Modal = ({ toggleModal, children }) => {
       exit={{ opacity: 0 }}
       style={{ overflow: 'hidden' }}
       transition={{ duration: 0.3 }}
-      onClick={handleBackdropClick}
+      onMouseDown={handleBackdropClick}
     >
       <ModalContent
         initial={{ scale: 0.5, opacity: 0 }}
@@ -59,4 +59,5 @@ export const Modal = ({ toggleModal, children }) => {
 
 Modal.propTypes = {
   toggleModal: PropTypes.func.isRequired,
+  children: PropTypes.node,
 };

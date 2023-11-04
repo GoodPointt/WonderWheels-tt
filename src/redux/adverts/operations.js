@@ -6,11 +6,11 @@ import {
   fetchByPrice,
 } from '../../api/instance';
 import { checkFavorites } from '../../utils/checkFavorites';
-import { mileage } from '../../common/data';
+import { VARIANT } from '../../common/constants';
 
 export const getAll = createAsyncThunk(
   'adverts/getAll',
-  async (variant, thunkAPI) => {
+  async (variant = VARIANT.ALL, thunkAPI) => {
     try {
       const {
         adverts: { favorites, page },

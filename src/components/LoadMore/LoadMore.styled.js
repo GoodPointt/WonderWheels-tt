@@ -8,6 +8,7 @@ export const StyledLoadMore = styled.button`
   text-decoration-line: underline;
   background-color: transparent;
   margin: 0 auto;
+  margin-top: 40px;
 
   transition: var(--o-animation);
 

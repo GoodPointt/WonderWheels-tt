@@ -7,12 +7,13 @@ import { incrementPage } from '../../redux/adverts/slice';
 import { useEffect, useState } from 'react';
 import { LIMIT, VARIANT } from '../../common/constants';
 import { handleInfo } from '../../utils/handleToast';
+import PropTypes from 'prop-types';
 
 const LoadMore = ({ variant }) => {
   const [shouldLoadMore, setShouldLoadMore] = useState(true);
   const [shouldScroll, setShouldScroll] = useState(false);
   const { t } = useTranslation();
-  const { page, adverts, filter, favorites } = useAdverts();
+  const { page, adverts, filter, favorites, isLoading } = useAdverts();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -58,7 +59,7 @@ const LoadMore = ({ variant }) => {
   )
     return (
       shouldLoadMore && (
-        <StyledLoadMore onClick={handleLoadMore}>
+        <StyledLoadMore onClick={handleLoadMore} disabled={isLoading}>
           {t('button.loadMore')}
         </StyledLoadMore>
       )
@@ -77,3 +78,7 @@ const LoadMore = ({ variant }) => {
 };
 
 export default LoadMore;
+
+LoadMore.propTypes = {
+  variant: PropTypes.string.isRequired,
+};

@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 
-export const StyledBenefitsSection = styled.section`
-  padding: 90px 0px;
-
+export const StyledBenefits = styled.section`
   & h2 {
     margin-bottom: 40px;
   }

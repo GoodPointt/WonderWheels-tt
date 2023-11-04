@@ -4,10 +4,9 @@ import ScrollToTop from './ScrollToTop';
 import LocaleSelect from './LocaleSelect';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAdverts } from '../../hooks/useAdverts';
+import PropTypes from 'prop-types';
 
 const Layout = ({ children }) => {
-  const { page } = useAdverts();
   return (
     <div className="body">
       <Header />
@@ -25,10 +24,14 @@ const Layout = ({ children }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="colored"
+        theme="dark"
       />
     </div>
   );
 };
 
 export default Layout;
+
+Layout.propTypes = {
+  children: PropTypes.node,
+};

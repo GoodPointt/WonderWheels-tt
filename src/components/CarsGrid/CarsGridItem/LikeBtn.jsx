@@ -1,4 +1,5 @@
 import { BiHeart, BiSolidHeart } from 'react-icons/bi';
+import PropTypes from 'prop-types';
 
 const LikeBtn = ({ hadleLike, isFavorite }) => {
   return (
@@ -13,3 +14,8 @@ const LikeBtn = ({ hadleLike, isFavorite }) => {
 };
 
 export default LikeBtn;
+
+LikeBtn.propTypes = {
+  hadleLike: PropTypes.func.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+};

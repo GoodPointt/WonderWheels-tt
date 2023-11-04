@@ -5,14 +5,21 @@ export const StyledCarsGridItem = styled.li`
   border-radius: 10px;
   background-color: var(--white-txt-color);
   height: 425px;
-  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-  & span {
+  & .upperBlock {
+    position: relative;
+  }
+
+  & .accentText {
     color: var(--accent-color);
     margin-left: 5px;
   }
 
-  & div {
+  & .carCardTitle {
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
@@ -35,6 +42,26 @@ export const StyledCarsGridItem = styled.li`
     transform: scale(1.01);
     transition: all 500ms, filter 500ms ease-in-out;
     filter: brightness(100%);
+  }
+
+  & .carDetailsWrapper {
+    color: rgba(18, 20, 23, 0.1);
+    margin-bottom: auto;
+    & .carDetails {
+      color: rgba(18, 20, 23, 0.2);
+      color: rgba(18, 20, 23, 0.5);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    & .carDetails:not(:last-child)::after {
+      content: '';
+      border-right: 1px rgba(18, 20, 23, 0.2) solid;
+      width: 20px;
+      height: 16px;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
   }
 `;
 

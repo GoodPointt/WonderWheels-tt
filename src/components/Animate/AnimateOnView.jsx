@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 const titleAnimation = {
   hidden: {
@@ -30,3 +31,7 @@ const AnimateOnView = ({ children }) => {
 };
 
 export default AnimateOnView;
+
+AnimateOnView.propTypes = {
+  children: PropTypes.node.isRequired,
+};

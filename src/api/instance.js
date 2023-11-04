@@ -5,7 +5,7 @@ export const instance = axios.create({
   baseURL: BASE_URL,
 });
 
-export const fetchAllCars = async (page, variant = VARIANT.ALL) => {
+export const fetchAllCars = async (page, variant) => {
   try {
     if (variant === VARIANT.ALL) {
       const { data } = await instance.get(

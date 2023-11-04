@@ -16,7 +16,9 @@
 
 main {
   width: 100%;
+  overflow-y: auto;
 }
+
 header {
   display: block;
   padding-top: 50px;
@@ -24,8 +26,9 @@ header {
   width: 100%;
 }
 footer {
-  padding: 24px 0;
+  padding: 48px 0;
   width: 100%;
+  background: rgb(22, 40, 63);
 }
 
 .body {
@@ -34,6 +37,14 @@ footer {
   display: flex;
   flex-wrap: wrap;
   min-height: 100vh;
+}
+
+.section {
+  padding: 60px 0;
+
+  @media screen and (min-width: 480px) {
+    padding: 100px 0;
+  }
 }
 
 *,

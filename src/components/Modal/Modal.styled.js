@@ -20,6 +20,8 @@ export const ModalContent = styled(motion.div)`
   border-radius: 24px;
   box-shadow: 0px 0px 29px #d4d4d4, 0px 0px 0px 0px #000,
     0px 0px 0px 0px #252525;
+  max-height: 90vh;
+  overflow-y: auto;
 
   & .closeBtn {
     position: absolute;

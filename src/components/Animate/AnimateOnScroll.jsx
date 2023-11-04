@@ -1,5 +1,6 @@
 import { useScroll, motion, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import PropTypes from 'prop-types';
 
 const AnimateOnScroll = ({ children }) => {
   const ref = useRef();
@@ -23,3 +24,7 @@ const AnimateOnScroll = ({ children }) => {
 };
 
 export default AnimateOnScroll;
+
+AnimateOnScroll.propTypes = {
+  children: PropTypes.node.isRequired,
+};

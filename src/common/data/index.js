@@ -1,8 +1,10 @@
 export const makes = [
+  { value: 'all', label: 'All' },
   { value: 'buick', label: 'Buick' },
   { value: 'hummer', label: 'HUMMER' },
   { value: 'subaru', label: 'Subaru' },
   { value: 'mitsubishi', label: 'Mitsubishi' },
+  { value: 'volvo', label: 'Volvo' },
   { value: 'nissan', label: 'Nissan' },
   { value: 'lincoln', label: 'Lincoln' },
   { value: 'gmc', label: 'GMC' },

@@ -8,10 +8,13 @@ import { getByMileage } from '../../../redux/adverts/operations';
 import Button from '../../Button/Button';
 import { handleWarning } from '../../../utils/handleToast';
 import { VARIANT } from '../../../common/constants';
+import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 const animatedComponents = makeAnimated();
 
-const MileageFilter = ({ variant }) => {
+const MileageFilter = ({ variant, referenceMin, referenceMax, onClear }) => {
+  const { t } = useTranslation();
   const [minMileage, setMinMileage] = useState(0);
   const [maxMileage, setMaxMileage] = useState(0);
   const { isLoading, favorites, filter } = useAdverts();
@@ -38,7 +41,7 @@ const MileageFilter = ({ variant }) => {
       borderTopLeftRadius: '14px',
       transition: 'all 300ms ease',
     }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    option: (styles, { isFocused, isSelected }) => {
       return {
         ...styles,
         color: isSelected || isFocused ? '#121417' : 'rgba(6, 7, 8, 0.272)',
@@ -94,12 +97,13 @@ const MileageFilter = ({ variant }) => {
       setMinMileage(0);
       return;
     }
-    console.log(selectedOption);
     if (name === 'mileageAsc') {
       setMinMileage(Number(selectedOption.value));
+      onClear(name);
     }
     if (name === 'mileageDesc') {
       setMaxMileage(Number(selectedOption.value));
+      onClear(name);
     }
   };
 
@@ -127,7 +131,7 @@ const MileageFilter = ({ variant }) => {
 
   return (
     <div style={{ width: '728px' }}>
-      <h4>Сar mileage / km</h4>
+      <h4>{t('filters.titles.mileages')}</h4>
       <div
         style={{
           display: 'flex',
@@ -146,9 +150,10 @@ const MileageFilter = ({ variant }) => {
             isLoading={isLoading}
             className="mileageAsc"
             isSearchable={true}
-            placeholder="From"
+            placeholder={t('filters.placeHolders.mileages.from')}
             closeMenuOnSelect={true}
             components={animatedComponents}
+            ref={referenceMin}
           />
           <Select
             isClearable
@@ -160,16 +165,17 @@ const MileageFilter = ({ variant }) => {
             isLoading={isLoading}
             className="mileageDesc"
             isSearchable={true}
-            placeholder="To"
+            placeholder={t('filters.placeHolders.mileages.to')}
             closeMenuOnSelect={true}
             components={animatedComponents}
+            ref={referenceMax}
           />
         </div>
         <Button
           isDisabled={minMileage === 0 || maxMileage === 0}
           handleClick={onSearch}
         >
-          Search
+          {t('button.search')}
         </Button>
       </div>
     </div>
@@ -177,3 +183,10 @@ const MileageFilter = ({ variant }) => {
 };
 
 export default MileageFilter;
+
+MileageFilter.propTypes = {
+  variant: PropTypes.string.isRequired,
+  onClear: PropTypes.func.isRequired,
+  referenceMin: PropTypes.any,
+  referenceMax: PropTypes.any,
+};

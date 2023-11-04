@@ -7,7 +7,8 @@
   "button": {
     "lable": "Докладніше",
     "loadMore": "Завантажити ще",
-    "rentLable": "Орендувати"
+    "rentLable": "Орендувати",
+    "search": "Пошук"
   },
   "home": {
     "benefits": [
@@ -41,5 +42,26 @@
         "title": "ПОМІЧНИК НА ДОРОЗІ"
       }
     ]
+  },
+  "filters": {
+    "titles": {
+      "makes": "Автомобільні бренди",
+      "prices": "Ціна / 1 година",
+      "mileages": "Пробіг автомобіля / км"
+    },
+    "placeHolders": {
+      "makes": "Виберіть бренд...",
+      "prices": "до $",
+      "mileages": { "from": "Від", "to": "До" }
+    }
+  },
+  "footer": {
+    "titleLeft": "ЗВ'ЯЗОК",
+    "titleRight": "РОБОЧІ ГОДИНИ",
+    "address": "15 Хрущатик, Київ",
+    "days": "Понеділок - Субота",
+    "hours": "09:00  - 18:00",
+    "weekend": "Неділя",
+    "closed": "Зачинено"
   }
 }

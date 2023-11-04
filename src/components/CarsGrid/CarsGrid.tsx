@@ -5,14 +5,11 @@ import { getAll } from '../../redux/adverts/operations';
 import { useAdverts } from '../../hooks/useAdverts';
 import { useDispatch } from 'react-redux/es';
 import { VARIANT } from '../../common/constants';
-import { handleError, handleInfo } from '../../utils/handleToast';
+import PropTypes from 'prop-types';
 
 const CarsGrid = ({ variant }) => {
   const dispatch = useDispatch();
   const { adverts, favorites, error } = useAdverts();
-
-  console.log('carsGridADVERTS', adverts);
-  console.log('carsGridERROR', error);
 
   useEffect(() => {
     (async () => {
@@ -44,3 +41,7 @@ const CarsGrid = ({ variant }) => {
 };
 
 export default CarsGrid;
+
+CarsGrid.propTypes = {
+  variant: PropTypes.string.isRequired,
+};

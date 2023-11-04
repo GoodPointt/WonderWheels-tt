@@ -7,7 +7,8 @@
   "button": {
     "lable": "Learn more",
     "loadMore": "Load more",
-    "rentLable": "Rental Car"
+    "rentLable": "Rental Car",
+    "search": "Search"
   },
   "home": {
     "benefits": [
@@ -32,5 +33,26 @@
       { "preTitle": "ALL CARS COME WITH A", "title": "PREMIUM WARRANTY" },
       { "preTitle": "NATIONWIDE ROAD SIDE ASSISTANCE", "title": "INCLUDED" }
     ]
+  },
+  "filters": {
+    "titles": {
+      "makes": "Car brands",
+      "prices": "Price / 1 hour",
+      "mileages": "Сar mileage / km"
+    },
+    "placeHolders": {
+      "makes": "Select brand...",
+      "prices": "to $",
+      "mileages": { "from": "From", "to": "To" }
+    }
+  },
+  "footer": {
+    "titleLeft": "GET IN TOUCH",
+    "titleRight": "OPENING HOURS",
+    "address": "15 Khreshatik, Kiyev",
+    "days": "Monday - Saturday",
+    "hours": "09:00 am - 06:00 pm",
+    "weekend": "Sunday",
+    "closed": "Closed"
   }
 }

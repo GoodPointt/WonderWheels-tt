@@ -7,10 +7,13 @@ import { resetPage } from '../../../redux/adverts/slice';
 import makeAnimated from 'react-select/animated';
 import { VARIANT } from '../../../common/constants';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 const animatedComponents = makeAnimated();
 
-const PriceFilter = ({ variant }) => {
+const PriceFilter = ({ variant, reference, onClear }) => {
+  const { t } = useTranslation();
   const { isLoading, filter, favorites } = useAdverts();
   const [isDisabled, setIsDisabled] = useState(isLoading);
 
@@ -29,11 +32,11 @@ const PriceFilter = ({ variant }) => {
       fontSize: '18px',
       fontWeight: 500,
       lineHeight: 1.11,
-      padding: '12px 0px 12px 12px',
+      padding: '14px 0px 14px 10px',
       borderRadius: '14px',
       transition: 'all 300ms ease',
     }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    option: (styles, { isFocused, isSelected }) => {
       return {
         ...styles,
         color: isSelected || isFocused ? '#121417' : 'rgba(6, 7, 8, 0.272)',
@@ -67,39 +70,32 @@ const PriceFilter = ({ variant }) => {
     }),
   };
 
-  const handleChange = selectedOption => {
+  const handleChange = (selectedOption, { name }) => {
     if (selectedOption === null) return;
+
     const { label } = selectedOption;
     if (label !== filter.rentalPrice) dispatch(resetPage());
     dispatch(
       getByPrice({ filter: { ...filter, rentalPrice: label }, variant })
     );
+
+    onClear(name);
   };
 
   return (
     <div>
-      <h4>Price / 1 hour</h4>
+      <h4>{t('filters.titles.prices')}</h4>
       <Select
-        isClearable
-        styles={{
-          ...controlStyles,
-          // clearIndicator: (base, state) => ({
-          //   ...base,
-          //   cursor: 'pointer',
-          //   color: state.isFocused ? 'lightblue' : 'black',
-          //   padding: 0,
-          //   backgroundColor: 'red',
-          //   position: 'absolute',
-          //   right: '4%',
-          // }),
-        }}
+        ref={reference}
+        isClearable={false}
+        styles={controlStyles}
         options={prices}
         onChange={handleChange}
         name="prices"
         isDisabled={isLoading || isDisabled}
         className="prices"
         isSearchable={true}
-        placeholder="to $"
+        placeholder={t('filters.placeHolders.prices')}
         closeMenuOnSelect={true}
         components={animatedComponents}
       />
@@ -108,3 +104,9 @@ const PriceFilter = ({ variant }) => {
 };
 
 export default PriceFilter;
+
+PriceFilter.propTypes = {
+  variant: PropTypes.string.isRequired,
+  onClear: PropTypes.func.isRequired,
+  reference: PropTypes.any,
+};

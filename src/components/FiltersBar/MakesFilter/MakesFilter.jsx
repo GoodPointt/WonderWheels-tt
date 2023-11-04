@@ -2,15 +2,18 @@ import Select from 'react-select';
 import { makes } from '../../../common/data/index';
 import { useAdverts } from '../../../hooks/useAdverts';
 import { useDispatch } from 'react-redux';
-import { getByMake } from '../../../redux/adverts/operations';
+import { getAll, getByMake } from '../../../redux/adverts/operations';
 import { resetPage } from '../../../redux/adverts/slice';
 import makeAnimated from 'react-select/animated';
 import { VARIANT } from '../../../common/constants';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 const animatedComponents = makeAnimated();
 
-const MakesFilter = ({ variant }) => {
+const MakesFilter = ({ variant, onClear, reference }) => {
+  const { t } = useTranslation();
   const { isLoading, favorites, filter } = useAdverts();
   const [isDisabled, setIsDisabled] = useState(isLoading);
 
@@ -33,7 +36,7 @@ const MakesFilter = ({ variant }) => {
       borderRadius: '14px',
       transition: 'all 300ms ease',
     }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    option: (styles, { isFocused, isSelected }) => {
       return {
         ...styles,
         color: isSelected || isFocused ? '#121417' : 'rgba(6, 7, 8, 0.272)',
@@ -67,19 +70,26 @@ const MakesFilter = ({ variant }) => {
     }),
   };
 
-  const handleChange = selectedOption => {
+  const handleChange = (selectedOption, { action, name }) => {
     if (selectedOption === null) return;
+
     const { label } = selectedOption;
     if (label !== filter.make) dispatch(resetPage());
+    if (action === 'select-option' && label === 'All')
+      dispatch(getAll(variant));
 
-    dispatch(getByMake({ filter: { ...filter, make: label }, variant }));
+    if (action === 'select-option' && label !== 'All')
+      dispatch(getByMake({ filter: { ...filter, make: label }, variant }));
+
+    onClear(name);
   };
 
   return (
     <div>
-      <h4>Car brand</h4>
+      <h4>{t('filters.titles.makes')}</h4>
       <Select
-        isClearable
+        ref={reference}
+        isClearable={false}
         styles={controlStyles}
         options={makes}
         onChange={handleChange}
@@ -87,7 +97,7 @@ const MakesFilter = ({ variant }) => {
         isDisabled={isLoading || isDisabled}
         className="makes"
         isSearchable={true}
-        placeholder={'Select brand...'}
+        placeholder={t('filters.placeHolders.makes')}
         closeMenuOnSelect={true}
         components={{ animatedComponents }}
       />
@@ -96,3 +106,9 @@ const MakesFilter = ({ variant }) => {
 };
 
 export default MakesFilter;
+
+MakesFilter.propTypes = {
+  variant: PropTypes.string.isRequired,
+  onClear: PropTypes.func.isRequired,
+  reference: PropTypes.any,
+};
