@@ -4,6 +4,7 @@
 <p>🏁  Final date: 04.11.2023</p>
 <ul>
 <li>🚗 Developed an application for car rental.</li>
+<li>🌐 The application is available in two languages: Ukrainian and English.</li>
 <li>📡 Sent a request to the server for a list of cars, paginated by 12 cars per request with the ability to load more.</li>
 <li>📊 Implemented filtering by price, mileage, and manufacturer.</li>
 <li>⭐ Added the ability to add cars to favorites.</li>
