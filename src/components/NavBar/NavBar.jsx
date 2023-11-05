@@ -3,7 +3,7 @@ import { StyledNavItem, StyledNavLink, StyledNavList } from './NavBar.styled';
 import { useDispatch } from 'react-redux';
 import { resetPage } from '../../redux/adverts/slice';
 
-const listAnimation = {
+const navBarAnimation = {
   hidden: {
     opacity: 0,
   },
@@ -33,19 +33,19 @@ const NavBar = () => {
   return (
     <nav>
       <StyledNavList
-        key={lang}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ amount: 0.1, once: true }}
         aria-label={t('aria.navMenu')}
+        initial="hidden"
+        viewport={{ amount: 0.1, once: true }}
+        whileInView="visible"
+        key={lang}
       >
         {navList.length > 0 &&
           navList.map((navItem, idx) => (
             <StyledNavItem
-              key={navItem.title}
-              variants={listAnimation}
-              custom={idx + 1}
               aria-label={navItem.title}
+              variants={navBarAnimation}
+              custom={idx + 1}
+              key={navItem.title}
             >
               <StyledNavLink
                 onClick={handleRouteChange}

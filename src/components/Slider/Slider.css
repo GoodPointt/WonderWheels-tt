@@ -1,6 +1,6 @@
 .swiper-button-prev,
 .swiper-button-next {
-  color: rgba(253, 255, 255, 0.5);
+  color: var(--accent-color);
   transition: all ease-in-out 500ms;
 }
 .swiper-button-prev:hover,
@@ -10,42 +10,30 @@
 
 .swiper-button-prev::after,
 .swiper-button-next::after {
-  font-weight: 900;
-  font-size: 48px;
+  font-weight: 600;
+  font-size: 36px;
 }
 
-.swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background-color: var(--accent-color);
+.HomeSlider .swiper-slide.swiper-slide-active .slideContent {
+  transform: scale(1);
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+  filter: grayscale(0%);
 }
 
-.swiper-pagination-bullet {
-  background-color: rgb(255, 255, 255);
-  width: 16px;
-  height: 16px;
-}
-
-.swiper-slide div {
+.HomeSlider .swiper-slide .slideContent {
   height: 90vh;
   width: 100vw;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.3);
+
+  transform: scale(1.01);
+  filter: grayscale(100%);
+  transition: transform 1300ms ease, filter 1400ms ease-in-out;
 }
 
-.HomeSlider .swiper-slide.swiper-slide-active div {
-  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
-  filter: blur(0);
-  transform: scale(1);
-}
-
-.HomeSlider .swiper-slide div {
-  transition: transform 1.5s ease, filter 1.1s ease-in-out;
-  filter: blur(2px);
-  transform: scale(1.05);
-}
-
-.HomeSlider .swiper-slide.swiper-slide-active div h2 {
+.HomeSlider .swiper-slide.swiper-slide-active .slideContent .slideTitle {
   position: absolute;
   z-index: 3;
   color: var(--white-txt-color);
@@ -61,11 +49,11 @@
   }
 }
 
-.HomeSlider .swiper-slide.swiper-slide-active div h2:hover {
+.HomeSlider .swiper-slide.swiper-slide-active .slideContent .slideTitle:hover {
   cursor: default;
 }
 
-.HomeSlider .swiper-slide.swiper-slide-active div h3 {
+.HomeSlider .swiper-slide.swiper-slide-active .slideContent .slidePreTitle {
   position: absolute;
   z-index: 3;
   color: var(--white-txt-color);
@@ -81,6 +69,9 @@
   }
 }
 
-.HomeSlider .swiper-slide.swiper-slide-active div h3:hover {
+.HomeSlider
+  .swiper-slide.swiper-slide-active
+  .slideContent
+  .slidePreTitle:hover {
   cursor: default;
 }

@@ -10,33 +10,30 @@ import PropTypes from 'prop-types';
 const Slider = ({ data, titles }) => {
   return (
     <Swiper
-      className="HomeSlider"
-      spaceBetween={0}
-      slidesPerView={1}
+      modules={[EffectFade, Autoplay, Navigation]}
       loop
-      pagination={{
-        clickable: true,
-        dynamicBullets: true,
-      }}
-      navigation
-      centeredSlides={true}
-      effect={'fade'}
+      className="HomeSlider"
       autoplay={{
         delay: 3000,
         disableOnInteraction: false,
       }}
-      modules={[EffectFade, Autoplay, Navigation, Pagination]}
+      spaceBetween={0}
+      slidesPerView={1}
+      navigation
+      centeredSlides={true}
+      effect={'fade'}
     >
       {data.length > 0 &&
         data.map((img, idx) => (
           <SwiperSlide key={idx}>
             <div
+              className="slideContent"
               style={{
                 backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url(${img})`,
               }}
             >
-              <h2>{titles[idx].title}</h2>
-              <h3>{titles[idx].preTitle}</h3>
+              <h2 className="slideTitle">{titles[idx].title}</h2>
+              <h3 className="slidePreTitle">{titles[idx].preTitle}</h3>
             </div>
           </SwiperSlide>
         ))}
