@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 const LikeBtn = ({ hadleLike, isFavorite }) => {
   return (
-    <button onClick={hadleLike} className="likeBtn">
+    <button
+      onClick={hadleLike}
+      className="likeBtn"
+      aria-label={`Like button, adding this car to favorite list, now its favorite = ${{
+        isFavorite,
+      }}`}
+    >
       {isFavorite ? (
         <BiSolidHeart size={30} color={'#3470FF'} />
       ) : (
@@ -16,6 +22,6 @@ const LikeBtn = ({ hadleLike, isFavorite }) => {
 export default LikeBtn;
 
 LikeBtn.propTypes = {
-  hadleLike: PropTypes.func.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
+  hadleLike: PropTypes.func,
+  isFavorite: PropTypes.bool,
 };

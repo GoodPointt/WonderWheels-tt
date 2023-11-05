@@ -51,10 +51,10 @@ export const getByPrice = createAsyncThunk(
   async ({ filter, variant }, thunkAPI) => {
     try {
       const {
-        adverts: { favorites, page },
+        adverts: { favorites },
       } = thunkAPI.getState();
 
-      const data = await fetchByPrice(page, filter);
+      const data = await fetchByPrice();
 
       const filteredData = data.filter(
         advert => advert.rentalPrice <= Number(filter.rentalPrice)
@@ -74,10 +74,10 @@ export const getByMileage = createAsyncThunk(
   async ({ variant, filter }, thunkAPI) => {
     try {
       const {
-        adverts: { favorites, page },
+        adverts: { favorites },
       } = thunkAPI.getState();
 
-      const data = await fetchByMileage(page, filter);
+      const data = await fetchByMileage();
       const filteredData = data.filter(
         advert =>
           advert.mileage >= Number(filter.mileage.minMileage) &&

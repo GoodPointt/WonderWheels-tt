@@ -6,10 +6,12 @@ import { useAdverts } from '../../hooks/useAdverts';
 import { useDispatch } from 'react-redux/es';
 import { VARIANT } from '../../common/constants';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 const CarsGrid = ({ variant }) => {
   const dispatch = useDispatch();
   const { adverts, favorites, error } = useAdverts();
+  const { t } = useTranslation();
 
   useEffect(() => {
     (async () => {
@@ -31,7 +33,7 @@ const CarsGrid = ({ variant }) => {
     );
 
   return (
-    <StyledCarsGrid>
+    <StyledCarsGrid aria-label={t('aria.carsGrid')}>
       {adverts.length > 0 &&
         adverts.map(advert => {
           return <CarsGridItem key={advert.id} car={advert} />;

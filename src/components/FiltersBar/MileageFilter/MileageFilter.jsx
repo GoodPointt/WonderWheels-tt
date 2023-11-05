@@ -141,6 +141,11 @@ const MileageFilter = ({ variant, referenceMin, referenceMax, onClear }) => {
       >
         <div style={{ display: 'flex' }}>
           <Select
+            aria-label={
+              t('filters.placeHolders.mileages.from') +
+              ' ' +
+              t('filters.titles.mileages')
+            }
             isClearable
             styles={controlStylesAsc}
             options={mileage}
@@ -156,6 +161,11 @@ const MileageFilter = ({ variant, referenceMin, referenceMax, onClear }) => {
             ref={referenceMin}
           />
           <Select
+            aria-label={
+              t('filters.placeHolders.mileages.to') +
+              ' ' +
+              t('filters.titles.mileages')
+            }
             isClearable
             styles={{ ...controlStylesAsc, ...controlStylesDesc }}
             options={mileage}

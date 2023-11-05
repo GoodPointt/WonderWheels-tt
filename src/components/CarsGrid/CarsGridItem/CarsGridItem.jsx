@@ -54,7 +54,12 @@ const CarsGridItem = ({ car }) => {
                 hadleLike={() => hadleLike(car)}
                 isFavorite={car.isFavorite}
               />
-              <StyledCarsGridItemImg src={car.img} loading="lazy" />
+              <StyledCarsGridItemImg
+                src={car.img}
+                loading="lazy"
+                alt={`${car.make} ${car.model} ${car.year}`}
+                aria-label={`Image of ${car.make} ${car.model} ${car.year}`}
+              />
               <div className="carCardTitle">
                 <p>
                   {car.make}

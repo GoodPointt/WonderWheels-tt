@@ -1,4 +1,9 @@
 {
+  "aria": {
+    "navMenu": "Navigation menu",
+    "close": "Modal close button",
+    "carsGrid": "List of cars what you can order for rent"
+  },
   "navList": [
     { "title": "Home", "path": "/" },
     { "title": "Catalog", "path": "/catalog" },

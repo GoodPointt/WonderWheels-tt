@@ -32,7 +32,7 @@ export const fetchByMake = async (page, filter) => {
   }
 };
 
-export const fetchByPrice = async (page, filter) => {
+export const fetchByPrice = async () => {
   try {
     const { data } = await instance.get(
       `/adverts?sortBy=rentalPrice&order=desc`
@@ -44,7 +44,7 @@ export const fetchByPrice = async (page, filter) => {
   }
 };
 
-export const fetchByMileage = async (page, filter) => {
+export const fetchByMileage = async () => {
   try {
     const { data } = await instance.get(`/adverts?sortBy=mileage&order=asc`);
 

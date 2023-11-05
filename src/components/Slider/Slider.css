@@ -51,8 +51,14 @@
   color: var(--white-txt-color);
   bottom: 10%;
   right: 8%;
-  font-size: 40px;
+  font-size: 20px;
   font-weight: 600;
+
+  @media screen and (min-width: 768px) {
+    & {
+      font-size: 40px;
+    }
+  }
 }
 
 .HomeSlider .swiper-slide.swiper-slide-active div h2:hover {
@@ -65,8 +71,14 @@
   color: var(--white-txt-color);
   bottom: 16%;
   right: 8%;
-  font-size: 30px;
+  font-size: 16px;
   font-weight: 600;
+
+  @media screen and (min-width: 768px) {
+    & {
+      font-size: 30px;
+    }
+  }
 }
 
 .HomeSlider .swiper-slide.swiper-slide-active div h3:hover {

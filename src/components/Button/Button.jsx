@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 
 const Button = ({ children, handleClick, isDisabled = false }) => {
   return (
-    <StyledButton disabled={isDisabled} onClick={handleClick}>
+    <StyledButton
+      disabled={isDisabled}
+      onClick={handleClick}
+      aria-label={children}
+      aria-disabled={isDisabled}
+    >
       {children}
     </StyledButton>
   );

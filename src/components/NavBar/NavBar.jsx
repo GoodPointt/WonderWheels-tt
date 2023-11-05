@@ -37,6 +37,7 @@ const NavBar = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ amount: 0.1, once: true }}
+        aria-label={t('aria.navMenu')}
       >
         {navList.length > 0 &&
           navList.map((navItem, idx) => (
@@ -44,6 +45,7 @@ const NavBar = () => {
               key={navItem.title}
               variants={listAnimation}
               custom={idx + 1}
+              aria-label={navItem.title}
             >
               <StyledNavLink
                 onClick={handleRouteChange}

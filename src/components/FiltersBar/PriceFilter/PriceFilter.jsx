@@ -86,6 +86,7 @@ const PriceFilter = ({ variant, reference, onClear }) => {
     <div>
       <h4>{t('filters.titles.prices')}</h4>
       <Select
+        aria-label={t('filters.titles.prices')}
         ref={reference}
         isClearable={false}
         styles={controlStyles}

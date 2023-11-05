@@ -88,6 +88,7 @@ const MakesFilter = ({ variant, onClear, reference }) => {
     <div>
       <h4>{t('filters.titles.makes')}</h4>
       <Select
+        aria-label={t('filters.titles.makes')}
         ref={reference}
         isClearable={false}
         styles={controlStyles}
